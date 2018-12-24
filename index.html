@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    #wrapper {
+  font-size: 1em;
+  font-family: arial;
+  margin: 20px auto;
+  width:450px;
+  color: green;
+  text-align: center;
+}
+
+#btc {font-size:6em;}
+    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+
+        <div id="wrapper">
+                <h1>Bitcoin Current Price</h1>
+                <div id="btc"></div>
+              </div>
+    
+
+<script>
+var currentPrice = new XMLHttpRequest();
+
+currentPrice.open('GET', 'https://api.gdax.com/products/BTC-USD/book', true);
+currentPrice.onreadystatechange = function(){
+  if(currentPrice.readyState == 4){
+    var ticker = JSON.parse(currentPrice.responseText);
+    var price = ticker.bids[0][0];
+    document.getElementById('btc').innerHTML = "$" + price;
+  };
+};
+currentPrice.send();
+</script>
+
+</body>
+</html>
