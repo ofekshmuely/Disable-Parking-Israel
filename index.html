@@ -1,46 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-    #wrapper {
-  font-size: 1em;
-  font-family: arial;
-  margin: 20px auto;
-  width:450px;
-  color: green;
-  text-align: center;
-}
 
-#btc {font-size:6em;}
-    </style>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת תו נכה</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/MUTCD_D9-6.svg/800px-MUTCD_D9-6.svg.png" type="image/gif" sizes="16x16">
+    <meta name="theme-color" content="#003D83" />
+    <script src="focus.js"></script>
+
+
+    <link rel="stylesheet" href="main.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-        <div id="wrapper">
-                <h1>Bitcoin Current Price</h1>
-                <div id="btc"></div>
-              </div>
+
+
+
+
+    <div class="custom-shape-divider-top-1595095338">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <div class="header">
+        <div><h1>האם לרכב יש תו נכה?</h1></div>
+
+    </div>
+ 
+    <div class="container">
+          <input type="text" class="licenseplate" id="licenseplateBox temperature"  maxlength="10" minlength="6"
+                  placeholder="123-456-78"/
+                  onKeyPress="if(this.value.length==10)
+                                                       return false;">
+        
+    </div>
+    <!--  ...-->
     
+    <div id="searchButton">
+        <button onclick="getPosts();" id="clicker" class="btn purple">בדיקת סטטוס</button>
+    </div>
 
-<script>
-var currentPrice = new XMLHttpRequest();
+ 
+ 
+    <div class="custom-shape-divider-bottom-1595095504">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+        </svg>
+    </div>
 
-currentPrice.open('GET', 'https://api.gdax.com/products/BTC-USD/book', true);
-currentPrice.onreadystatechange = function(){
-  if(currentPrice.readyState == 4){
-    var ticker = JSON.parse(currentPrice.responseText);
-    var price = ticker.bids[0][0];
-    document.getElementById('btc').innerHTML = "$" + price;
-  };
-};
-currentPrice.send();
-</script>
 
-</body>
+    <script src="main.js"></script>
+        </body>
 </html>
