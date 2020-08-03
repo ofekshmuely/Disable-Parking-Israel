@@ -81,12 +81,8 @@ button{
   
   }
 
-  @media screen and (min-width: 690px) {
-    .btn{
-        font-size: 1.85em!important;
 
-      }
-  }
+ 
 
   @media screen and (max-width: 400px) {
 
@@ -96,7 +92,7 @@ button{
         background-image: url(https://svgshare.com/i/Mz4.svg)!important;
       background-repeat: no-repeat;
       
-      font-size: 45px!important; /*100/2   */
+      font-size: 35px!important; /*100/2   */
       font-weight: bold;
       text-align: center;
       
@@ -121,8 +117,8 @@ button{
 
     .btn{
         
-      font-size: 1.25em!important;
-
+      font-size: 0.7em!important;
+      padding: 5px 8px;
 
     }
 
@@ -182,7 +178,6 @@ input[type=number] {
 .btn {
     border-radius: 3px;
     margin: 0 auto!important;
-
     color: #fbdedb;
     background-color: #fbdedb;
     display: inline-block;
@@ -201,6 +196,9 @@ input[type=number] {
     -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     position: relative;
+    font-size: 2.75em!important;
+    padding: 10px 15px;
+
 }
 .btn:hover, .btn:focus {
     opacity: 0.8;
@@ -225,7 +223,7 @@ input[type=number] {
 
 
 
-/* top custom shape */
+/* top custom svg */
 
 .custom-shape-divider-top-1595095338 {
     position: absolute;
@@ -247,7 +245,7 @@ input[type=number] {
     fill: #003D83;
 }
 
-/* bottom custom shape */
+/* bottom custom svg */
 
 .custom-shape-divider-bottom-1595095504 {
     position: absolute;
@@ -281,7 +279,7 @@ input[type=number] {
 #modal {
   color:white;
   font-family: 'Heebo', sans-serif;
-  border: 10px solid wheat;
+  border: 10px solid white;
   border-style: solid;
   background-color: gray;
   text-align: center;
@@ -292,24 +290,14 @@ input[type=number] {
   height: 300px;
   position: relative;
   top: 30%;
-  display: flex;
-  flex-direction: column;
-
 
   
 }
 
-/** 
-  Overlay: #overlay
+#modal > #close-modal{
+  background-color: #564f8a!important;
+}
 
-  1) Add a width and a height of 100%
-  2) Position absolute (allows us to place any element exactly where we want it)
-  3) Set top, left, bottom, right to 0
-  4) Add a background colour of black
-  5) Add position relative to #modal so that it's relative to #overlay
-  6) Put the background of #modal to white (temp background no longer needed)
-  7) Add top: 30% to #modal
-**/
 #overlay {
   z-index: 111;
   display: none;
@@ -320,6 +308,5 @@ input[type=number] {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
 }
-

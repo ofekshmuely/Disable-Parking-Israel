@@ -8,13 +8,7 @@ document.getElementById("licenseplateBox temperature").focus();
 
 
 
- //only javascript 
-/* document.getElementById("Overly").addEventListener("click", function(){
-    let e =document.getElementsByClassName("modalbox");
-   
-           e[0].style.display = 'block';
-      
-   })	; */
+
 
 async function getPlate() {
 
