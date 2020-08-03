@@ -40,7 +40,7 @@ async function getPlate() {
 
     //true modal
     if(isHandicaptedCarBoolean === true){
-        document.getElementById("overlay").style.visibility = "block";
+        document.getElementById("overlay").style.display = "block";
         document.getElementById("modal").style.backgroundColor  = "#016148";
         document.getElementById("carnum").textContent = carLicensePlate;
         document.getElementById("statusReveal").textContent = "הרכב בעל תו נכה";
