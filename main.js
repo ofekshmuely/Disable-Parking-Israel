@@ -1,14 +1,28 @@
+let e =document.getElementsByClassName("modalbox");
+
+document.getElementById("close-modal").addEventListener("click", function() {
+document.getElementById("overlay").style.display = "none";
+document.getElementById("licenseplateBox temperature").focus();
+
+})
 
 
 
-async function getPosts() {
+ //only javascript 
+/* document.getElementById("Overly").addEventListener("click", function(){
+    let e =document.getElementsByClassName("modalbox");
+   
+           e[0].style.display = 'block';
+      
+   })	; */
+
+async function getPlate() {
 
 
     //let carLicensePlate = 91849601
 
     let carLicensePlate = document.getElementById("licenseplateBox temperature").value;
     carLicensePlate = carLicensePlate.toString().replace(/\D/g,'');
-    alert (carLicensePlate)
 
     carLicensePlate = parseFloat(carLicensePlate);
     
@@ -21,32 +35,40 @@ async function getPosts() {
     ? obj.result.records.map(data => data) : []; 
     
     let carLicensePlateResult = JSON.stringify(serachKey);
-  
     let isHandicaptedCarBoolean = carLicensePlateResult.includes(carLicensePlate);
 
 
     //true modal
     if(isHandicaptedCarBoolean === true){
-        document.body.style.backgroundColor = "green";
+        document.getElementById("overlay").style.visibility = "block";
+        document.getElementById("modal").style.backgroundColor  = "#016148";
+        document.getElementById("carnum").textContent = carLicensePlate;
+        document.getElementById("statusReveal").textContent = "הרכב בעל תו נכה";
+
+
+
 
     }
 
     //false modal
     if(isHandicaptedCarBoolean === false){
-        document.body.style.backgroundColor = "red";
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("modal").style.backgroundColor  = "#8B0000";
+        document.getElementById("carnum").textContent = carLicensePlate;
+        document.getElementById("statusReveal").textContent = "הרכב אינו בעל תו נכה";
+
+
+
+
 
     }
-
-
-
+   
     document.getElementById('licenseplateBox temperature').value = "";
-
-
     document.getElementById("licenseplateBox temperature").focus();
 
-                                                }
+                                                                        }
 
 
-
+                                                                       
 
      

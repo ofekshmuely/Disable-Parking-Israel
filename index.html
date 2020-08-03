@@ -17,43 +17,59 @@
 </head>
 <body>
 
-
-
-
-
+    <!-- top svg -->
     <div class="custom-shape-divider-top-1595095338">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+            <path d="M1200 
+            120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
         </svg>
     </div>
 
-    <div class="header">
-        <div><h1>האם לרכב יש תו נכה?</h1></div>
-
+    <!-- overlay result of API request -->
+    <div id="overlay">
+        <div id="modal">
+            <h1>סטטוס הרכב</h1>
+            <h1 id="carnum"></h1>
+            <h1 id="statusReveal"></h1>
+            <button id="close-modal">סגור</button>
+        </div>
     </div>
- 
+
+
+    <!-- section header -->
+    <div class="header">
+        <div><h1>האם לרכב יש תו נכה? ♿</h1></div>
+    </div>
+    
     <div class="container">
           <input type="text" class="licenseplate" id="licenseplateBox temperature"  maxlength="10" minlength="6"
                   placeholder="123-456-78"/
-                  onKeyPress="if(this.value.length==10)
-                                                       return false;">
+                  onKeyPress="if(this.value.length==10) return false;">
         
     </div>
-    <!--  ...-->
+
     
     <div id="searchButton">
-        <button onclick="getPosts();" id="clicker" class="btn purple">בדיקת סטטוס</button>
     </div>
 
+    <div class="container">
+        <button type="button"  onclick="getPlate();" id="Overly" class="btn purple overly" >בדיקת סטטוס</button>
+        </div>
+        
+           </div>
+
+
  
- 
+           <!-- footer svg -->
     <div class="custom-shape-divider-bottom-1595095504">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
         </svg>
     </div>
 
-
+                <!-- dom events -->
     <script src="main.js"></script>
         </body>
 </html>
+
+
