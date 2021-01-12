@@ -2,7 +2,7 @@
 
 :wheelchair: **Demo:**
 
-https://ofekshmuely.github.io/Handicapped-Parking-Web/
+https://ofekshmuely.github.io/Disable-Parking-Israel/
 
 📘 **What is the goal?**<br>
 Fetching data from www.gov.il API's:
