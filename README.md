@@ -2,7 +2,6 @@
 ![preview](https://i.imgur.com/2Ar0jym.png) 
 
 
-
 :wheelchair: **Demo:**
 
 https://ofekshmuely.github.io/Disable-Parking-Israel/
