@@ -3,7 +3,6 @@ let e =document.getElementsByClassName("modalbox");
 document.getElementById("close-modal").addEventListener("click", function() {
 document.getElementById("overlay").style.display = "none";
 document.getElementById("licenseplateBox temperature").focus();
-
 })
 
 
