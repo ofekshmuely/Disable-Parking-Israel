@@ -3,7 +3,6 @@
 
 
 :wheelchair: **Demo:**
-
 https://ofekshmuely.github.io/Disable-Parking-Israel/
 
 📘 **What is the goal?**<br>
