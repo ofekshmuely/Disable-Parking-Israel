@@ -1,60 +1,68 @@
-let e = document.getElementsByClassName("modalbox");
+// Get the modal elements
+const modalBoxes = document.getElementsByClassName("modalbox");
+const overlay = document.getElementById("overlay");
+const modal = document.getElementById("modal");
+const carNumberDisplay = document.getElementById("carnum");
+const statusDisplay = document.getElementById("statusReveal");
+const closeButton = document.getElementById("close-modal");
+const licensePlateBox = document.getElementById("licenseplateBox temperature");
 
-document.getElementById("close-modal").addEventListener("click", function () {
-  document.getElementById("overlay").style.display = "none";
-  document.getElementById("licenseplateBox temperature").focus();
+// Close modal event listener
+closeButton.addEventListener("click", function () {
+  overlay.style.display = "none";
+  licensePlateBox.focus();
 });
 
-async function getPlate() {
-  //let carLicensePlate = 91849601
+// Function to fetch data and display modal
+async function displayModal(isHandicapped) {
+  overlay.style.display = "block";
+  modal.style.backgroundColor = isHandicapped ? "#016148" : "#8B0000";
+  carNumberDisplay.textContent = licensePlateBox.value;
+  statusDisplay.textContent = isHandicapped
+    ? "הרכב בעל תו נכה"
+    : "הרכב אינו בעל תו נכה";
 
-  let carLicensePlate = document.getElementById(
-    "licenseplateBox temperature"
-  ).value;
-  carLicensePlate = carLicensePlate.toString().replace(/\D/g, "");
-
-  carLicensePlate = parseFloat(carLicensePlate);
-
-  //fetching data from gov.il
-  let postsPromise = await fetch(
-    `https://data.gov.il/api/3/action/datastore_search?q=${carLicensePlate}&resource_id=c8b9f9c8-4612-4068-934f-d4acd2e3c06e`
-  );
-  let obj = await postsPromise.json();
-  let serachKey =
-    obj && obj.result && obj.result.records && obj.result.records.length
-      ? obj.result.records.map((data) => data)
-      : [];
-
-  let carLicensePlateResult = JSON.stringify(serachKey);
-  let isHandicaptedCarBoolean = carLicensePlateResult.includes(carLicensePlate);
-
-  console.log(
-    `variable isHandicaptedCarBoolean value when NaN: ${isHandicaptedCarBoolean}`
-  );
-
-  //true modal
-  if (isHandicaptedCarBoolean === true) {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("modal").style.backgroundColor = "#016148";
-    document.getElementById("carnum").textContent = carLicensePlate;
-    document.getElementById("statusReveal").textContent = "הרכב בעל תו נכה";
-  }
-
-  //false modal
-  if (isHandicaptedCarBoolean === false) {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("modal").style.backgroundColor = "#8B0000";
-    document.getElementById("carnum").textContent = carLicensePlate;
-    document.getElementById("statusReveal").textContent =
-      "הרכב אינו בעל תו נכה";
-    if (isNaN(carLicensePlate)) {
-      document.getElementById("statusReveal").textContent =
-        "לחץ על סגור והכנס מספר רכב תקין בשנית";
-      document.getElementById("carnum").textContent = "לא הוזן מספר רכב";
-    }
-  }
-
-  //   Reseting form
-  document.getElementById("licenseplateBox temperature").value = "";
-  document.getElementById("licenseplateBox temperature").focus();
+  // Resetting form
+  licensePlateBox.value = "";
+  licensePlateBox.focus();
 }
+
+// Function to check if a given car number is handicapped
+async function checkHandicappedStatus(carNumber) {
+  try {
+    const response = await fetch(
+      `https://data.gov.il/api/3/action/datastore_search?q=${carNumber}&resource_id=c8b9f9c8-4612-4068-934f-d4acd2e3c06e`
+    );
+    const data = await response.json();
+    const records = data.result?.records || [];
+    return records.length > 0;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return false;
+  }
+}
+
+// Main function to get and process the car number
+async function getPlate() {
+  const carNumberInput = licensePlateBox.value;
+  const cleanCarNumber = carNumberInput.replace(/\D/g, "");
+
+  if (!cleanCarNumber) {
+    carNumberDisplay.textContent = "לא הוזן מספר רכב";
+    statusDisplay.textContent = "לחץ על סגור והכנס מספר רכב תקין בשנית";
+    displayModal(false);
+    return;
+  }
+
+  const isHandicapped = await checkHandicappedStatus(cleanCarNumber);
+
+  displayModal(isHandicapped);
+}
+
+// Attach the event listener for the form submit
+licensePlateBox.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    getPlate();
+  }
+});
